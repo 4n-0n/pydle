@@ -6,6 +6,16 @@ from .client import Error, NotInChannel, AlreadyInChannel, BasicClient, ClientPo
 from .features.ircv3.cap import NEGOTIATING as CAPABILITY_NEGOTIATING, FAILED as CAPABILITY_FAILED, \
     NEGOTIATED as CAPABILITY_NEGOTIATED
 
+import asyncio
+# And use asyncio.coroutine where it was used, although it's better to switch to async def
+# However, since 'coroutine' decorator is removed, you would actually need to:
+from functools import wraps
+
+def coroutine(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
 
 __name__ = 'pydle'
 __version__ = '0.9.4rc1'
