@@ -49,8 +49,7 @@ class Connection:
             host=self.hostname,
             port=self.port,
             local_addr=self.source_address,
-            ssl=self.tls_context,
-            loop=self.eventloop
+            ssl=self.tls_context
         )
 
     def create_tls_context(self):
